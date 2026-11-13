@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card LinkedIn - Portfolio Artisanat</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      background: #f3f2ef;
+      color: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 940px;
+      background: linear-gradient(135deg, #FAF6F0 0%, #FDFBF7 100%);
+      border: 1px solid #E8DFD4;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(45, 42, 38, 0.08);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        grid-template-columns: 1fr;
+        border-radius: 12px;
+      }
+    }
+
+    /* Lado esquerdo - Conteúdo */
+    .content {
+      padding: 48px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        padding: 32px 28px;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: #B8956B;
+      color: #fff;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      line-height: 1.3;
+      color: #2D2A26;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h1 .highlight {
+      color: #B8956B;
+    }
+
+    p.lead {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #5B5650;
+      margin-bottom: 28px;
+      max-width: 400px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .stat {
+      flex: 1;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid #E8DFD4;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.5rem;
+      color: #B8956B;
+      font-weight: 700;
+    }
+
+    .stat span {
+      font-size: 0.8rem;
+      color: #8B7355;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .tag {
+      padding: 6px 12px;
+      background: #FDFBF7;
+      border: 1px solid #E8DFD4;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #8B7355;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: #2D2A26;
+      color: #FAF6F0;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .cta:hover {
+      background: #4A4641;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(45, 42, 38, 0.2);
+    }
+
+    .cta svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Lado direito - Visual do site */
+    .preview {
+      background: #FAF6F0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .preview {
+        padding: 32px 28px;
+        order: -1;
+      }
+    }
+
+    .preview::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(184, 149, 107, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .site-mockup {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border: 1px solid #E8DFD4;
+      border-radius: 16px;
+      box-shadow: 0 24px 48px rgba(45, 42, 38, 0.12);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mockup-header {
+      background: #2D2A26;
+      padding: 16px 20px;
+      color: #FAF6F0;
+    }
+
+    .mockup-header .logo {
+      font-family: 'Georgia', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .mockup-header .logo span {
+      color: #B8956B;
+      font-style: italic;
+    }
+
+    .mockup-body {
+      padding: 32px 24px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mockup-icon {
+      width: 64px;
+      height: 64px;
+      background: #E8DFD4;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .mockup-icon svg {
+      width: 32px;
+      height: 32px;
+      stroke: #8B7355;
+    }
+
+    .mockup-title {
+      font-family: 'Georgia', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2D2A26;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .mockup-subtitle {
+      font-size: 0.9rem;
+      color: #5B5650;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .mockup-btn {
+      padding: 12px 24px;
+      background: #B8956B;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .mockup-btn:hover {
+      background: #8B7355;
+    }
+
+    /* Footer do card */
+    .card-footer {
+      grid-column: 1 / -1;
+      background: #2D2A26;
+      color: #FAF6F0;
+      padding: 24px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .card-footer {
+        padding: 20px 28px;
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-left strong {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .footer-right {
+      font-size: 0.8rem;
+      color: #C9B896;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .whatsapp-link {
+      color: #25D366;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .whatsapp-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Decorativos */
+    .decoration {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 4px;
+      height: 4px;
+      background: #B8956B;
+      border-radius: 50%;
+      box-shadow: 
+        0 20px 0 #B8956B,
+        0 40px 0 #B8956B,
+        20px 0 0 #B8956B,
+        40px 0 0 #B8956B,
+        20px 20px 0 #B8956B,
+        -20px -20px 0 #B8956B;
+    }
+
+    @media (max-width: 768px) {
+      .decoration {
+        top: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="decoration"></div>
+
+    <!-- Lado esquerdo: Conteúdo -->
+    <div class="content">
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        Projeto entregue
+      </div>
+
+      <h1>Portfolio de <span class="highlight">Artesanato</span> com IA</h1>
+
+      <p class="lead">Site completo para artesã, desenvolvido com <strong>vibecoding</strong> e <strong>agente de IA</strong>. Design inspirado no template Kunstwerk, com integração direta ao WhatsApp para solicitação de orçamentos.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>6</strong>
+          <span>categorias</span>
+        </div>
+        <div class="stat">
+          <strong>1</strong>
+          <span>link WhatsApp</span>
+        </div>
+        <div class="stat">
+          <strong>0</strong>
+          <span>linhas de código escritas à mão</span>
+        </div>
+      </div>
+
+      <div class="tags">
+        <span class="tag">Vibecode</span>
+        <span class="tag">Agente de IA</span>
+        <span class="tag">HTML/CSS/JS</span>
+        <span class="tag">GitHub Pages</span>
+        <span class="tag">WhatsApp API</span>
+        <span class="tag">Responsivo</span>
+      </div>
+
+      <a href="https://josecassiosantos.github.io/portfolio-artisanat/" class="cta" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6l12 12"/>
+        </svg>
+        Ver site ao vivo
+      </a>
+    </div>
+
+    <!-- Lado direito: Preview do site -->
+    <div class="preview">
+      <div class="site-mockup">
+        <div class="mockup-header">
+          <div class="logo">Artisan<span>at</span></div>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <div class="mockup-title">Peças únicas, feitas para você</div>
+          <div class="mockup-subtitle">Solicite seu orçamento pelo WhatsApp em 3 cliques</div>
+          <a href="#" class="mockup-btn">Ver categorias</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="footer-left">
+        <strong>Cassio Santos</strong> · Neobpo
+        <span style="color:#C9B896;">•</span>
+        <a href="#" class="whatsapp-link">WhatsApp direto</a>
+      </div>
+      <div class="footer-right">feito com agente de Hermes IA</div>
+    </div>
+  </div>
+
+</body>
+</html>
